@@ -1,17 +1,25 @@
 package src.Homework.medium;
 
 public class Main {
+
     public static void main(String[] args) {
-        DataSource<MyData> myDataDataSource = new Repository<>(
-                new CachedDataSource<>(), new MyDataCloudDataSource());
 
-        DataSource<GeoData> geoDataDataSource = new GeoRepository(
-                new CachedDataSource<>(), new GeoDataCloudDataSource());
+        // --- Box<String> ---
+        System.out.println("Box<String>");
+        Box<String> stringBox = new Box<>("Hello, Generics!");
+        stringBox.showType();
+        System.out.println("Содержимое: " + stringBox.getItem());
+        stringBox.setItem("Новое значение");
+        System.out.println("После setItem: " + stringBox.getItem());
 
-        MyData myData = myDataDataSource.getData();
-        GeoData geoData = geoDataDataSource.getData();
-        System.out.println(myData.toString());
-        System.out.println(geoData.toString());
+        System.out.println();
+
+        // --- Box<Integer> ---
+        System.out.println("Box<Integer>");
+        Box<Integer> intBox = new Box<>(42);
+        intBox.showType();
+        System.out.println("Содержимое: " + intBox.getItem());
+        intBox.setItem(100);
+        System.out.println("После setItem: " + intBox.getItem());
     }
-
 }
