@@ -28,7 +28,4 @@ public class Main {
     }
   }
 
-  public static ArrayList<Integer> removeDuplicates(ArrayList<Integer> list) {
-    return null;
-  }
 }

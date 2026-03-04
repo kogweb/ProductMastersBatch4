@@ -16,7 +16,6 @@ public class WordCounter {
         this.filePath = filePath;
     }
 
-    // Читает файл и заполняет HashSet и HashMap
     public void analyze() throws IOException {
         uniqueWords.clear();
         wordFrequency.clear();
@@ -24,29 +23,25 @@ public class WordCounter {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Приводим к нижнему регистру и разбиваем по пробелам/знакам препинания
                 String[] words = line.toLowerCase().split("[^a-zA-Zа-яА-ЯёЁ]+");
                 for (String word : words) {
                     if (word.isEmpty()) continue;
 
-                    uniqueWords.add(word); // HashSet — только уникальные слова
+                    uniqueWords.add(word);
                     wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1); // HashMap — счётчик
                 }
             }
         }
     }
 
-    // Возвращает все уникальные слова
     public HashSet<String> getUniqueWords() {
         return uniqueWords;
     }
 
-    // Возвращает частоту каждого слова
     public HashMap<String, Integer> getWordFrequency() {
         return wordFrequency;
     }
 
-    // Печатает результат, отсортированный по убыванию частоты
     public void printResults() {
         System.out.println("=".repeat(40));
         System.out.printf("Всего уникальных слов: %d%n", uniqueWords.size());
